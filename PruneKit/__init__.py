@@ -1,1 +1,1 @@
-from .dragger import LinearDiredReg, LinearDiredCat
+from .dragger import LinPruneReg, LinPruneCat
