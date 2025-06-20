@@ -67,7 +67,7 @@ def LinPruneCat(dataframe, target_column_name):
         X_test_temp = X_test.drop(columns=draggers)
 
         # Baseline model
-        base_model = LogisticRegression(max_iter=1000)
+        base_model = LogisticRegression(max_iter=10000)
         base_model.fit(X_train_temp, y_train)
         base_predictions = base_model.predict(X_test_temp)
         baseline_score = accuracy_score(y_test, base_predictions)
