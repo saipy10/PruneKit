@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LinearRegression, LogisticRegression
+from sklearn.linear_model import LinearRegression, RidgeClassifier
 from sklearn.metrics import mean_squared_error, accuracy_score
 
 
@@ -67,7 +67,7 @@ def LinPruneCat(dataframe, target_column_name):
         X_test_temp = X_test.drop(columns=draggers)
 
         # Baseline model
-        base_model = LogisticRegression(max_iter=10000)
+        base_model = RidgeClassifier(max_iter=10000)
         base_model.fit(X_train_temp, y_train)
         base_predictions = base_model.predict(X_test_temp)
         baseline_score = accuracy_score(y_test, base_predictions)
@@ -80,7 +80,7 @@ def LinPruneCat(dataframe, target_column_name):
             X_train_iter = X_train_temp.drop(columns=[column])
             X_test_iter = X_test_temp.drop(columns=[column])
 
-            model_iter = LogisticRegression()
+            model_iter = RidgeClassifier()
             model_iter.fit(X_train_iter, y_train)
             predictions_iter = model_iter.predict(X_test_iter)
             current_score = accuracy_score(y_test, predictions_iter)
